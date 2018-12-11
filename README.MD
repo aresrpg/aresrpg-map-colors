@@ -1,4 +1,4 @@
-# aresrpg-world
+# aresrpg-map-colors
 
 Minecraft item map colors utility.
 
