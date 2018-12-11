@@ -53,13 +53,6 @@ export default class {
 		return this.fromRgb(hex >> 16, (hex >> 8) & 0xff, hex & 0xff)
 	}
 
-	/**
-	 *
-	 * @param {Number} r
-	 * @param {Number} g
-	 * @param {Number} b
-	 * @returns an Object { r, g, b } of the color corresponding to the RGB value, or undefined if not found
-	 */
 	static fromRgb(r, g, b) {
 		for (let color of COLORS) {
 			const { r: r2, g: g2, b: b2 } = color

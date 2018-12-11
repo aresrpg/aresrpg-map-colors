@@ -31,7 +31,7 @@ const color = MapColor.nearestMatch(70, 120, 35)
 > same as doing `COLORS[id-4]`
 
 ```js
-const color = MapColor.color(4)
+const { r, g, b } = MapColor.color(4)
 ```
 
 You can also get the decimal/hexadecimal value
@@ -43,6 +43,5 @@ const color = MapColor.hex(4).toString(16)
 ### Find a color by value
 
 ```js
-const color = MapColor.fromHex(0x597d27)
-color = MapColor.fromRgb(89, 125, 39)
+const { r, g, b } = MapColor.fromHex(0x597d27)
 ```
