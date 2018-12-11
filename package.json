@@ -1,0 +1,38 @@
+{
+  "name": "@aresrpg/aresrpg-map-colors",
+  "version": "1.0.0",
+  "description": "Aresrpg map item colors utility",
+  "main": "lib/mapColors.js",
+  "homepage": "https://aresrpg.fr",
+  "scripts": {
+    "prepare": "babel src --out-dir lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AresRPG/aresrpg-map-colors.git"
+  },
+  "keywords": [
+    "aresrpg",
+    "mmorpg",
+    "minecraft",
+    "map",
+    "colors"
+  ],
+  "author": "Sceat",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AresRPG/aresrpg-map-colors/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.0",
+    "@babel/plugin-proposal-class-properties": "^7.2.1",
+    "@babel/plugin-proposal-decorators": "^7.2.0",
+    "@babel/plugin-proposal-function-bind": "^7.2.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.2.0",
+    "@babel/preset-env": "^7.0.0-beta.51"
+  }
+}
