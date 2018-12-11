@@ -1,6 +1,6 @@
 {
   "name": "@aresrpg/aresrpg-map-colors",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Aresrpg map item colors utility",
   "main": "lib/mapColors.js",
   "homepage": "https://aresrpg.fr",
