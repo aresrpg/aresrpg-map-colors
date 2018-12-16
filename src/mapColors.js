@@ -1,3 +1,8 @@
+import getPixels from 'get-pixels'
+import { promisify } from 'util'
+
+const pixels = promisify(getPixels)
+
 export default class {
 	/**
 	 * This function take a color and return the closest color according to human eyes conception available in minecraft pc
@@ -19,6 +24,18 @@ export default class {
 				result = { id, r: r2, g: g2, b: b2 }
 			}
 		}
+		return result
+	}
+
+	/**
+	 * Take an image and return a buffer array of minecraft compatible colors
+	 * @param {String} path
+	 * @returns an array [ { id, r, g, b } ]
+	 */
+	static async fromImage(path) {
+		const { data } = await pixels(path)
+		const result = []
+		for (let i = 0; i < data.length; ) result.push(this.nearestMatch(data[i++], data[i++], data[i++]))
 		return result
 	}
 
