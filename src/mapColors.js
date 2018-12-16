@@ -21,7 +21,7 @@ export default class {
 			const deviation = ((r2 - r1) * 0.3) ** 2 + ((g2 - g1) * 0.59) ** 2 + ((b2 - b1) * 0.11) ** 2
 			if (i === -1 || deviation < i) {
 				i = deviation
-				result = { id, r: r2, g: g2, b: b2 }
+				result = { id: id + 3, r: r2, g: g2, b: b2 }
 			}
 		}
 		return result
