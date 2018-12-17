@@ -33,9 +33,14 @@ export default class {
 	 * @returns an array [ { id, r, g, b } ]
 	 */
 	static async fromImage(path) {
-		const { data } = await pixels(path)
+		const img = await pixels(path)
+		const [width, height] = img.shape
 		const result = []
-		for (let i = 0; i < data.length; ) result.push(this.nearestMatch(data[i++], data[i++], data[i++]))
+		for (let x = 0; x < width; x++) {
+			for (let y = 0; y < height; y++) {
+				result.push(this.nearestMatch(img.get(x, y, 0), img.get(x, y, 1), img.get(x, y, 2)))
+			}
+		}
 		return result
 	}
 
