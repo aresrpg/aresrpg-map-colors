@@ -29,18 +29,18 @@ export default class {
 
 	/**
 	 * Take an image and return a buffer array of minecraft compatible colors
-	 * @param {String} path
+	 * @param {String} path the image path (can be an url)
 	 * @returns an array [ { id, r, g, b } ]
 	 */
 	static async fromImage(path) {
 		const img = await pixels(path)
 		const [width, height] = img.shape
 		const result = []
-		for (let x = 0; x < width; x++) {
+		// console.log(`width:${width}, height:${height}, length:${img.data.length}`)
+		for (let x = 0; x < width; x++)
 			for (let y = 0; y < height; y++) {
 				result.push(this.nearestMatch(img.get(x, y, 0), img.get(x, y, 1), img.get(x, y, 2)))
 			}
-		}
 		return result
 	}
 
