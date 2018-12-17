@@ -36,6 +36,7 @@ export default class {
 		const img = await pixels(path)
 		const [width, height] = img.shape
 		const result = []
+		// console.log(`width:${width}, height:${height}, length:${img.data.length}`)
 		for (let x = 0; x < width; x++)
 			for (let y = 0; y < height; y++) {
 				result.push(this.nearestMatch(img.get(x, y, 0), img.get(x, y, 1), img.get(x, y, 2)))
