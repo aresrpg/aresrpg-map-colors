@@ -6,6 +6,10 @@ deploy:
   email: contact@aresrpg.fr
   api_key:
     secure: X5Ag+3L+I+GLS8eNljqaYmhdsLsEHEfxoRBLkWUZoIChi1/nVwi0btbKUoAJuygmCxMtTLA7V/7r4ZwAWXHupRR4CC8cIbl9ukDznKRxTJvAmsKSQSvI0uwspyZCif5D0IcIrPWipU4X41uHwcRwFaj6XXiYeoigARvog1o7/viId5X1me1NMuuT9t/qDnEzRFKhV/Cw9tiHjwfPDMyc/8WqRD5PIkxO6XdaeWGKcHMoj4dFy0/iL2HW/rsYoiDVOvRKuMTdQvCosSrG558mhoVkiqDacGydFvIgEYj1p1jZDjHoWYKOXtDELARXW/XlR+Q4nLVereY1og/cmqAMNJo5dZit1K/oqJy3bUsOgNXBuVb+kxXEmlYENFxwCOcxObvcYMNq/PztUdLCeM+d4Xd6v115v4jmtO2bdLjVSunE8FiacTEl0urelaoOAXqn9UMcjCmnJIOHCCooFRL7GQI/09Q/RVnfbCGf3j9WUThjgOV5ZVo8mdQYLq0NpLk0GwpNV9wUQ8bHLVlMzmojqkVryD1Iik/J8BOQMaRcU+sW2ZWWcBcr6kdqC3pmz/SGVAL/RxYP07j8kDWob25mKq3fUU7ZCGpGE5ChpOnJ6QeBmM50l8ucY3MOn7hGXs5dMhGthyEOCv3Mpeu2rxGGkkmfXTLGJmob2BbqVPH+S34=
+  script: echo "Deploying to npm ..."
+  before_deploy:
+    - npm install -g babel-cli
+    - npm install
   on:
     tags: true
     branch: master
