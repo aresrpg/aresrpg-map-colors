@@ -9,19 +9,19 @@ export default class {
 	 * @param {Number} r
 	 * @param {Number} g
 	 * @param {Number} b
-	 * @returns an Object { id, r, g, b } of the closest minecraft compatible color
+	 * @returns the id of the closest minecraft compatible color
 	 */
 	@cache
 	static nearestMatch(r1, g1, b1) {
-		let i = -1
-		let id = 0
-		let result = { id, r: 0, g: 0, b: 0 }
-		for (let { r: r2, g: g2, b: b2 } of COLORS) {
-			id++
+		let i = 0xffffffff
+		let result = 0
+		// fastest iteration
+		for (let reverse = COLORS.length - 1; reverse >= 0; reverse--) {
+			const { r: r2, g: g2, b: b2 } = COLORS[reverse]
 			const deviation = ((r2 - r1) * 0.3) ** 2 + ((g2 - g1) * 0.59) ** 2 + ((b2 - b1) * 0.11) ** 2
-			if (i === -1 || deviation < i) {
+			if (deviation < i) {
 				i = deviation
-				result = { id: id + 3, r: r2, g: g2, b: b2 }
+				result = reverse + 4
 			}
 		}
 		return result
@@ -30,16 +30,16 @@ export default class {
 	/**
 	 * Take an image and return a buffer array of minecraft compatible colors
 	 * @param {String} path the image path (can be an url)
-	 * @returns an array [ { id, r, g, b } ]
+	 * @returns an array of id
 	 */
 	static async fromImage(path) {
 		const img = await pixels(path)
 		const [width, height] = img.shape
-		const result = []
-		// console.log(`width:${width}, height:${height}, length:${img.data.length}`)
+		const result = new Uint8Array()
+		let i = 0
 		for (let x = 0; x < width; x++)
 			for (let y = 0; y < height; y++) {
-				result.push(this.nearestMatch(img.get(x, y, 0), img.get(x, y, 1), img.get(x, y, 2)))
+				result[i++] = this.nearestMatch(img.get(x, y, 0), img.get(x, y, 1), img.get(x, y, 2))
 			}
 		return result
 	}
