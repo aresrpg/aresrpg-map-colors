@@ -72,7 +72,7 @@ void async function() {
 
 > Servers should build their own system with the `nearestMatch` function right below to be able to only send updated pixels and not the whole image every time! see [Map item format](https://minecraft.gamepedia.com/Map_item_format)
 
-### Find the closest color available in minecraft from any color
+* ### Find the closest color available in minecraft from any color
 
 Arguments and return value are memoized for performances
 
@@ -86,7 +86,7 @@ const color = MapColor.nearestMatch(70, 120, 35)
 ![](https://i.imgur.com/gWAHyQl.png)
 ![](https://i.imgur.com/ue85juy.png)
 
-### Find a color by id
+* ### Find a color by id
 
 > same as doing `COLORS[id-4]`
 
@@ -100,7 +100,7 @@ You can also get the decimal/hexadecimal value
 const color = MapColor.hex(4).toString(16)
 ```
 
-### Find a color by value
+* ### Find a color by value
 
 ```js
 const { r, g, b } = MapColor.fromHex(0x597d27)
