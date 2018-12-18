@@ -17,12 +17,13 @@
 [discordlink]: https://discord.gg/Ea6a5cn
 
 Minecraft item map colors utility.
----
+
 ## Install
 
 `npm i @aresrpg/aresrpg-map-colors`
 
 [![](https://i.imgur.com/Wjsg0KU.png)](https://minecraft.gamepedia.com/Map_item_format#1.12_Color_Table)
+
 ---
 ## Use:
 
