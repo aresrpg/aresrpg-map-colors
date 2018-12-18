@@ -44,26 +44,28 @@ Note that you will need to handle image sizes and multiples neighbors map (via i
 import MapColor, { COLORS } from '@aresrpg/aresrpg-map-colors'
 import mc from 'minecraft-protocol'
 
-const datas = await MapColor.fromImage('https://i.imgur.com/28NLJWg.png')
-const buffer = []
+void (async function() {
+	const datas = await MapColor.fromImage('https://i.imgur.com/28NLJWg.png')
+	const buffer = []
 
-for (let x = 0; x < 128; x++)
-	for (let y = 0; y < 128; y++) {
-		const { id } = datas[x + y]
-		buffer.push(id)
-	}
+	for (let x = 0; x < 128; x++)
+		for (let y = 0; y < 128; y++) {
+			const { id } = datas[x + y]
+			buffer.push(id)
+		}
 
-client.write('map', {
-	itemDamage: 0,
-	scale: 4,
-	trackingPosition: false,
-	icons: [],
-	columns: 127,
-	rows: 127,
-	x: 0,
-	y: 0,
-	data: Buffer.from(buffer),
-})
+	client.write('map', {
+		itemDamage: 0,
+		scale: 4,
+		trackingPosition: false,
+		icons: [],
+		columns: -128,
+		rows: -128,
+		x: 0,
+		y: 0,
+		data: Buffer.from(buffer),
+	})
+})()
 ```
 
 > Servers should build their own system with the `nearestMatch` function right below to be able to only send updated pixels and not the whole image every time! see [Map item format](https://minecraft.gamepedia.com/Map_item_format)
