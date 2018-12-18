@@ -1,4 +1,20 @@
+![][licence] [![][npm]][npmlink] [![][travis]][travislink] [![][depfu]][depfulink]
+
 # aresrpg-map-colors
+
+[![][discord]][discordlink] [![][twitter]][twitterlink]
+
+[licence]: https://img.shields.io/github/license/AresRPG/aresrpg-map-colors.svg?style=for-the-badge
+[npm]: https://img.shields.io/npm/v/@aresrpg/aresrpg-map-colors.svg?logo=npm&style=for-the-badge
+[npmlink]: https://www.npmjs.com/package/@aresrpg/aresrpg-map-colors
+[travis]: https://img.shields.io/travis/com/AresRPG/aresrpg-map-colors.svg?logo=travis&style=for-the-badge
+[travislink]: https://travis-ci.com/AresRPG/aresrpg-map-colors
+[depfu]: https://img.shields.io/depfu/AresRPG/aresrpg-map-colors.svg?style=for-the-badge
+[depfulink]: https://depfu.com/repos/AresRPG/aresrpg-map-colors
+[twitter]: https://img.shields.io/badge/follow-us-blue.svg?logo=twitter&style=for-the-badge
+[twitterlink]: https://twitter.com/AresRPG
+[discord]: https://img.shields.io/discord/265104803531587584.svg?logo=discord&style=for-the-badge
+[discordlink]: https://discord.gg/Ea6a5cn
 
 Minecraft item map colors utility.
 
