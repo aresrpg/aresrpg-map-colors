@@ -17,14 +17,14 @@
 [discordlink]: https://discord.gg/Ea6a5cn
 
 Minecraft item map colors utility.
-
-### Install
+---
+## Install
 
 `npm i @aresrpg/aresrpg-map-colors`
 
-![https://minecraft.gamepedia.com/Map_item_format#1.12_Color_Table](https://i.imgur.com/Wjsg0KU.png)
-
-### Use:
+[![](https://i.imgur.com/Wjsg0KU.png)](https://minecraft.gamepedia.com/Map_item_format#1.12_Color_Table)
+---
+## Use:
 
 ```js
 import MapColor, { COLORS } from '@aresrpg/aresrpg-map-colors'
@@ -44,7 +44,7 @@ Note that you will need to handle image sizes and multiples neighbors map (via i
 import MapColor, { COLORS } from '@aresrpg/aresrpg-map-colors'
 import mc from 'minecraft-protocol'
 
-void (async function() {
+void async function() {
 	const datas = await MapColor.fromImage('https://i.imgur.com/28NLJWg.png')
 	const buffer = []
 
@@ -65,7 +65,8 @@ void (async function() {
 		y: 0,
 		data: Buffer.from(buffer),
 	})
-})()
+}()
+
 ```
 
 > Servers should build their own system with the `nearestMatch` function right below to be able to only send updated pixels and not the whole image every time! see [Map item format](https://minecraft.gamepedia.com/Map_item_format)
