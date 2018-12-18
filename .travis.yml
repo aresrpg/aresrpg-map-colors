@@ -9,3 +9,5 @@ deploy:
   on:
     tags: true
     branch: master
+install:
+  - npm install -g babel-cli
