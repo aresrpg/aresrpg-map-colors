@@ -31,7 +31,7 @@ Minecraft item map colors utility.
 import MapColor, { COLORS } from '@aresrpg/aresrpg-map-colors'
 ```
 
-### Convert an image into an array of minecraft compatible ids
+* ### Convert an image into an array of minecraft compatible ids
 
 ```js
 const datas = await MapColor.fromImage('https://i.imgur.com/28NLJWg.png')
