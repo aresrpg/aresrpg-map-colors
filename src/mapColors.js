@@ -1,5 +1,6 @@
 import getPixels from 'get-pixels'
 import { promisify } from 'util'
+import cwise from 'cwise'
 
 const pixels = promisify(getPixels)
 
@@ -36,18 +37,28 @@ export default class {
 	/**
 	 * Take an image and return a buffer array of minecraft compatible colors
 	 * @param {String} path the image path (can be an url)
-	 * @returns an array of id
+	 * @returns an unsigned byte array of id
 	 */
 	static async fromImage(path) {
 		const img = await pixels(path)
 		const [width, height] = img.shape
-		const result = new Uint8Array(width * height)
-		let i = 0
-		for (let x = 0; x < width; x++)
-			for (let y = 0; y < height; y++) {
-				result[i++] = this.nearestMatch(img.get(x, y, 0), img.get(x, y, 1), img.get(x, y, 2))
-			}
-		return result
+		const mapIds = cwise({
+			args: ['scalar', 'scalar', { blockIndices: -1 }, 'scalar'],
+			pre: function(w, h) {
+				this.result = new Uint8Array(w * h)
+				this.i = 0
+			},
+			body: function(w, h, a, match) {
+				const r = a[0]
+				const g = a[1]
+				const b = a[2]
+				this.result[this.i++] = match(r, g, b)
+			},
+			post: function() {
+				return this.result
+			},
+		})
+		return mapIds(width, height, img, this.nearestMatch)
 	}
 
 	/**

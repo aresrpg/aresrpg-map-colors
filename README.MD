@@ -17,7 +17,7 @@
 [discordlink]: https://discord.gg/Ea6a5cn
 [mcversion]: https://img.shields.io/badge/minecraft-1.12+-AB47BC.svg?style=for-the-badge
 
-I'm a tool to help you manage minecraft map colors.
+I'm a **performances focused** tool to help you manage minecraft map colors.
 I provide utilities to bridge between any colors to minecraft compatible colors
 
 ---
@@ -80,7 +80,7 @@ void (async function() {
 })()
 ```
 
-> In case you want build an item frame wall with multiple blocks you'll need to handle the buffer to split every 128 values, see [Map item format](https://minecraft.gamepedia.com/Map_item_format)
+> In case you want to build an item frame wall with multiple blocks you'll need to handle the buffer to split every 128 values, see [Map item format](https://minecraft.gamepedia.com/Map_item_format)
 
 #### Find the closest color available in minecraft from any color
 
