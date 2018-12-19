@@ -3,7 +3,13 @@ import { promisify } from 'util'
 
 const pixels = promisify(getPixels)
 
+class StreamColor {}
+
 export default class {
+	static openStream() {
+		return new StreamColor()
+	}
+
 	/**
 	 * This function take a color and return the closest color according to human eyes conception available in minecraft pc
 	 * @param {Number} r
