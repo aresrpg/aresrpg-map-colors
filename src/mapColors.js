@@ -35,7 +35,7 @@ export default class {
 	static async fromImage(path) {
 		const img = await pixels(path)
 		const [width, height] = img.shape
-		const result = new Uint8Array()
+		const result = new Uint8Array(width * height)
 		let i = 0
 		for (let x = 0; x < width; x++)
 			for (let y = 0; y < height; y++) {
@@ -64,22 +64,6 @@ export default class {
 	static hex(id) {
 		const { r, g, b } = this.color(id)
 		return toHex(r, g, b)
-	}
-
-	/**
-	 *
-	 * @param {Number} hex
-	 * @returns an Object { r, g, b } of the color corresponding to the hexadecimal value, or undefined if not found
-	 */
-	static fromHex(hex) {
-		return this.fromRgb(hex >> 16, (hex >> 8) & 0xff, hex & 0xff)
-	}
-
-	static fromRgb(r, g, b) {
-		for (let color of COLORS) {
-			const { r: r2, g: g2, b: b2 } = color
-			if (r === r2 && g === g2 && b === b2) return color
-		}
 	}
 }
 
