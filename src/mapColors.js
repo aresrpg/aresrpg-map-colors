@@ -4,8 +4,6 @@ import cwise from 'cwise'
 
 const pixels = promisify(getPixels)
 
-class StreamColor {}
-
 export default class {
 	static openStream() {
 		return new StreamColor()
