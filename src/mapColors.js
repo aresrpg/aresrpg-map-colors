@@ -56,7 +56,7 @@ export function hex(id) {
 /**
  * Take an image and return a buffer array of minecraft compatible colors
  * @param {String} path the image path (can be an url)
- * @returns an unsigned byte array of id
+ * @returns an object containing an unsigned byte array of id
  */
 export async function fromImage(path) {
 	const img = await pixels(path)
@@ -77,7 +77,11 @@ export async function fromImage(path) {
 			return this.result
 		},
 	})
-	return mapIds(width, height, img, nearestMatch)
+	return {
+		width,
+		height,
+		datas: mapIds(width, height, img, nearestMatch),
+	}
 }
 
 function toHex(r, g, b) {

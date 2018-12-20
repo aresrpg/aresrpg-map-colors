@@ -44,7 +44,7 @@ Convert an image into an array of minecraft compatible ids
 
 ```js
 void (async function() {
-	const datas = await fromImage('https://i.imgur.com/28NLJWg.png') // uInt8
+	const { width, height, datas } = await fromImage('https://i.imgur.com/28NLJWg.png') // uInt8
 	console.log(datas.length) // imageWidth * imageHeight
 	console.log(datas) // [id,id,...]
 })()
@@ -60,8 +60,7 @@ import mc from 'minecraft-protocol'
 
 void (async function() {
 	const size = 128
-	const data = await fromImage('https://i.imgur.com/h8g7SEf.jpg')
-	console.log(data)
+	const { datas } = await fromImage('https://i.imgur.com/h8g7SEf.jpg')
 	this.client.write('map', {
 		itemDamage: 0,
 		scale: 4,
