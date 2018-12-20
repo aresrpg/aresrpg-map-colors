@@ -2,10 +2,6 @@ import { Transform } from 'stream'
 import MapColor from './mapColors'
 
 export class ComputeColors extends Transform {
-	constructor() {
-		super()
-	}
-
 	// buffer to id array
 	_transform(chunk, _, next) {
 		MapColor.fromImage(chunk)

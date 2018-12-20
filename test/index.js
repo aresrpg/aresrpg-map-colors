@@ -8,18 +8,21 @@ tape('Nearest match should return the closest minecraft compatible color', async
 })
 
 tape('Framerate should throttle the stream', t => {
+	t.plan(1)
 	const r = new Readable()
-	const loop = 10
-	const fps = 10
+	r._read = () => {}
 	const pss = new PassThrough()
-	const last = Date.now()
-	for (let i = 0; i < loop; i++) r.push('slt')
-	r.push(null)
-	r.pipe(new Framerate(fps)).pipe(pss)
-	pss.on('data', chunk => {
-		if (!chunk) {
-			t.ok(Date.now() - last >= 1000, 'The framerate should take at least 1s')
-			t.end()
+	r.pipe(new Framerate(10)).pipe(pss)
+	let count = 0
+	let pushs = 0
+	pss.on('data', () => count++)
+	pss.on('finish', () => t.equal(count, 10, `${pushs} were pushed, we should have received 10 and received ${count}`))
+	const handle = setInterval(() => {
+		pushs++
+		r.push('slt')
+		if (pushs >= 100) {
+			r.push(null)
+			clearInterval(handle)
 		}
-	})
+	}, 10)
 })
