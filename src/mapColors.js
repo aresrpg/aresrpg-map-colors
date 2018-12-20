@@ -4,11 +4,7 @@ import cwise from 'cwise'
 
 const pixels = promisify(getPixels)
 
-export default class {
-	static openStream() {
-		return new StreamColor()
-	}
-
+class Matcher {
 	/**
 	 * This function take a color and return the closest color according to human eyes conception available in minecraft pc
 	 * @param {Number} r
@@ -31,55 +27,57 @@ export default class {
 		}
 		return result
 	}
+}
 
-	/**
-	 * Take an image and return a buffer array of minecraft compatible colors
-	 * @param {String} path the image path (can be an url)
-	 * @returns an unsigned byte array of id
-	 */
-	static async fromImage(path) {
-		const img = await pixels(path)
-		const [width, height] = img.shape
-		const mapIds = cwise({
-			args: ['scalar', 'scalar', { blockIndices: -1 }, 'scalar'],
-			pre: function(w, h) {
-				this.result = new Uint8Array(w * h)
-				this.i = 0
-			},
-			body: function(w, h, a, match) {
-				const r = a[0]
-				const g = a[1]
-				const b = a[2]
-				this.result[this.i++] = match(r, g, b)
-			},
-			post: function() {
-				return this.result
-			},
-		})
-		return mapIds(width, height, img, this.nearestMatch)
-	}
+export const nearestMatch = Matcher.nearestMatch
 
-	/**
-	 *
-	 * @param {Number} id
-	 * @returns an Object { r, g, b } of the color corresponding to the minecraft id
-	 * @see https://minecraft.gamepedia.com/Map_item_format
-	 */
-	static color(id) {
-		if (id < 4 || id > 207) throw new Error(`${id} is out of bounds`)
-		return COLORS[id - 4]
-	}
+/**
+ *
+ * @param {Number} id
+ * @returns an Object { r, g, b } of the color corresponding to the minecraft id
+ * @see https://minecraft.gamepedia.com/Map_item_format
+ */
+export function color(id) {
+	if (id < 4 || id > 207) throw new Error(`${id} is out of bounds`)
+	return COLORS[id - 4]
+}
 
-	/**
-	 *
-	 * @param {Number} id
-	 * @returns Hexadecimal value of the color corresponding to the minecraft id
-	 * @see https://minecraft.gamepedia.com/Map_item_format
-	 */
-	static hex(id) {
-		const { r, g, b } = this.color(id)
-		return toHex(r, g, b)
-	}
+/**
+ *
+ * @param {Number} id
+ * @returns Hexadecimal value of the color corresponding to the minecraft id
+ * @see https://minecraft.gamepedia.com/Map_item_format
+ */
+export function hex(id) {
+	const { r, g, b } = color(id)
+	return toHex(r, g, b)
+}
+
+/**
+ * Take an image and return a buffer array of minecraft compatible colors
+ * @param {String} path the image path (can be an url)
+ * @returns an unsigned byte array of id
+ */
+export async function fromImage(path) {
+	const img = await pixels(path)
+	const [width, height] = img.shape
+	const mapIds = cwise({
+		args: ['scalar', 'scalar', { blockIndices: -1 }, 'scalar'],
+		pre: function(w, h) {
+			this.result = new Uint8Array(w * h)
+			this.i = 0
+		},
+		body: function(w, h, a, match) {
+			const r = a[0]
+			const g = a[1]
+			const b = a[2]
+			this.result[this.i++] = match(r, g, b)
+		},
+		post: function() {
+			return this.result
+		},
+	})
+	return mapIds(width, height, img, nearestMatch)
 }
 
 function toHex(r, g, b) {
@@ -103,7 +101,7 @@ function cache(...a) {
 	}
 }
 
-// 1.12
+// 1.12+
 export const COLORS = [
 	{ r: 89, g: 125, b: 39 },
 	{ r: 109, g: 153, b: 48 },
