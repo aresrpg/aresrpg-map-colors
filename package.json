@@ -43,7 +43,8 @@
 		"tap-spec": "^5.0.0"
 	},
 	"dependencies": {
+		"cwise": "^1.0.10",
 		"get-pixels": "^3.3.2",
-		"cwise": "^1.0.10"
+		"ndarray": "^1.0.18"
 	}
 }
