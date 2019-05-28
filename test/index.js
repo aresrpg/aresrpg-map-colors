@@ -1,33 +1,27 @@
 import { nearestMatch } from '../src/mapColors'
-import tape from 'blue-tape'
 import { ComputeColors, ComputeKnown } from '../src/minecraftTransform'
 import { Readable, Writable } from 'stream'
-import Deferred from '../src/deferredPromise'
+import '@hydre/doubt'
 
-tape('Nearest match should return the closest minecraft compatible color', async t => {
-	return t.equal(nearestMatch(89, 125, 39), 4, `${nearestMatch(89, 125, 39)} should be 4`)
+'The nearest match function'.doubt(()=> {
+	'should return the closest minecraft compatible color'.because(nearestMatch(89, 125, 39)).isEqualTo(4)
 })
 
-tape('Next frame should be skipped if the last was exactly the same', async t => {
-	const def = new Deferred()
+'The computeKnown transform stream'.doubt(async ()=> {
 	const image = 'https://i.imgur.com/nAcX5cX.png'
 	const amount = 5
-
-	const r = new ReadImage(image, amount)
 	let count = 0
 
-	r.pipe(new ComputeColors())
-		.pipe(new ComputeKnown())
-		.pipe(
-			new WriteTest(c => {
-				const { skip, chunk } = c
-				if (!count) t.ok(chunk, 'The first frame should be there')
-				else t.ok(skip, 'any other frames should be skipped')
-				count++
-				if (count >= amount) def.resolve()
-			}),
-		)
-	return await def.promise
+	await new Promise(resolve => new ReadImage(image, amount)
+	|> #.pipe(new ComputeColors())
+	|> #.pipe(new ComputeKnown())
+	|> #.pipe(new WriteTest(c => {
+		const { skip, chunk } = c
+		if (!count) 'should only allow the first frame'.because(chunk).isTrue()
+		else 'should skip any other frames'.because(skip).isTrue()
+		count++
+		if (count >= amount) resolve()
+	})))
 })
 
 class ReadImage extends Readable {
