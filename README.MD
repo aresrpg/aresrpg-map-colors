@@ -1,4 +1,4 @@
-![][licence] [![][npm]][npmlink] [![][travis]][travislink] [![][depfu]][depfulink]
+![][licence] [![][npm]][npmlink] [![][travis]][travislink] [![][npmdl]][npmlink]
 
 # aresrpg-map-colors
 
@@ -9,8 +9,7 @@
 [npmlink]: https://www.npmjs.com/package/@aresrpg/aresrpg-map-colors
 [travis]: https://img.shields.io/travis/com/AresRPG/aresrpg-map-colors.svg?logo=travis&style=for-the-badge
 [travislink]: https://travis-ci.com/AresRPG/aresrpg-map-colors
-[depfu]: https://img.shields.io/depfu/AresRPG/aresrpg-map-colors.svg?style=for-the-badge
-[depfulink]: https://depfu.com/repos/AresRPG/aresrpg-map-colors
+[npmdl]: https://img.shields.io/npm/dw/@aresrpg/aresrpg-map-colors.svg?color=%239C27B0&style=for-the-badge
 [twitter]: https://img.shields.io/badge/follow-us-55acee.svg?logo=twitter&style=for-the-badge
 [twitterlink]: https://twitter.com/AresRPG
 [discord]: https://img.shields.io/discord/265104803531587584.svg?logo=discord&style=for-the-badge
