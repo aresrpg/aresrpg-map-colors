@@ -19,6 +19,9 @@
 I'm a **performances focused** tool to help you manage minecraft map colors.
 I provide utilities to bridge between any colors to minecraft compatible colors
 
+> since 1.1.4 i also provide a transform stream under `aresrpg-map-colors/minecraftTransform` that take images as input and output only updated frames to avoid sending the whole image each time
+> the feature is not documented yet so refer to `test/index.js`
+
 ---
 
 ## Installation
@@ -43,7 +46,7 @@ Convert an image into an array of minecraft compatible ids
 
 ```js
 void (async function() {
-	const { width, height, datas } = await fromImage('https://i.imgur.com/28NLJWg.png') 
+	const { width, height, datas } = await fromImage('https://i.imgur.com/28NLJWg.png')
 	console.log(datas.length) // imageWidth * imageHeight
 	console.log(datas) // [id,id,...] // uInt8
 })()

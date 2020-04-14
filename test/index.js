@@ -3,25 +3,25 @@ import { ComputeColors, ComputeKnown } from '../src/minecraftTransform'
 import { Readable, Writable } from 'stream'
 import '@hydre/doubt'
 
-'The nearest match function'.doubt(()=> {
+'The nearest match function'.doubt(() => {
 	'should return the closest minecraft compatible color'.because(nearestMatch(89, 125, 39)).isEqualTo(4)
 })
 
-'The computeKnown transform stream'.doubt(async ()=> {
+'The computeKnown transform stream'.doubt(async () => {
 	const image = 'https://i.imgur.com/nAcX5cX.png'
 	const amount = 5
 	let count = 0
 
 	await new Promise(resolve => new ReadImage(image, amount)
-	|> #.pipe(new ComputeColors())
-	|> #.pipe(new ComputeKnown())
-	|> #.pipe(new WriteTest(c => {
-		const { skip, chunk } = c
-		if (!count) 'should only allow the first frame'.because(chunk).isTrue()
-		else 'should skip any other frames'.because(skip).isTrue()
-		count++
-		if (count >= amount) resolve()
-	})))
+		.pipe(new ComputeColors())
+		.pipe(new ComputeKnown())
+		.pipe(new WriteTest(c => {
+			const { skip, chunk } = c
+			if (!count) 'should only allow the first frame'.because(chunk).isTrue()
+			else 'should skip any other frames'.because(skip).isTrue()
+			count++
+			if (count >= amount) resolve()
+		})))
 })
 
 class ReadImage extends Readable {

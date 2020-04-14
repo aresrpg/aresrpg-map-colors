@@ -7,7 +7,6 @@ export class ComputeColors extends Transform {
 	constructor() {
 		super({ readableObjectMode: true })
 	}
-
 	// buffer to id ndArray
 	async _transform(chunk, _, next) {
 		const { width, height, datas } = await fromImage(chunk.toString('utf8')) // TODO find which imput i should listen for
