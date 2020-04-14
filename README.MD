@@ -16,8 +16,11 @@
 [discordlink]: https://discord.gg/Ea6a5cn
 [mcversion]: https://img.shields.io/badge/minecraft-1.12+-AB47BC.svg?style=for-the-badge
 
-I'm a tool to help you manage minecraft map colors.
+I'm a **performances focused** tool to help you manage minecraft map colors.
 I provide utilities to bridge between any colors to minecraft compatible colors
+
+> since 1.1.4 i also provide a transform stream under `aresrpg-map-colors/minecraftTransform` that take images as input and output only updated frames to avoid sending the whole image each time
+> the feature is not documented yet so refer to `test/index.js`
 
 ---
 
@@ -36,15 +39,17 @@ npm i @aresrpg/aresrpg-map-colors
 ## Usage
 
 ```js
-import MapColor, { COLORS } from '@aresrpg/aresrpg-map-colors'
+import { nearestMatch, color, hex, fromImage, COLORS } from '@aresrpg/aresrpg-map-colors'
 ```
 
 Convert an image into an array of minecraft compatible ids
 
 ```js
-const datas = await MapColor.fromImage('https://i.imgur.com/28NLJWg.png') // uInt8
-console.log(datas.length) // imageWidth * imageHeight
-console.log(datas) // [id,id,...]
+void (async function() {
+	const { width, height, datas } = await fromImage('https://i.imgur.com/28NLJWg.png')
+	console.log(datas.length) // imageWidth * imageHeight
+	console.log(datas) // [id,id,...] // uInt8
+})()
 ```
 
 #### use it with [@Prismarine/node-minecraft-protocol](https://github.com/PrismarineJS/node-minecraft-protocol)
@@ -52,34 +57,27 @@ console.log(datas) // [id,id,...]
 Note that you will need to handle image sizes and multiples neighbors map (via item frames) by your own, we only provide conversions
 
 ```js
-import MapColor, { COLORS } from '@aresrpg/aresrpg-map-colors'
+import { fromImage } from '@aresrpg/aresrpg-map-colors'
 import mc from 'minecraft-protocol'
 
 void (async function() {
-	const datas = await MapColor.fromImage('https://i.imgur.com/28NLJWg.png')
-	const buffer = []
-
-	for (let x = 0; x < 128; x++)
-		for (let y = 0; y < 128; y++) {
-			const { id } = datas[x + y]
-			buffer.push(id)
-		}
-
-	client.write('map', {
+	const size = 128
+	const { datas } = await fromImage('https://i.imgur.com/h8g7SEf.jpg')
+	this.client.write('map', {
 		itemDamage: 0,
 		scale: 4,
 		trackingPosition: false,
 		icons: [],
-		columns: -128,
-		rows: -128,
+		columns: -size,
+		rows: -size,
 		x: 0,
 		y: 0,
-		data: Buffer.from(buffer),
+		data: Buffer.from(data),
 	})
 })()
 ```
 
-> In case you want build an item frame wall with multiple blocks you'll need to handle the buffer to split every 128 values, see [Map item format](https://minecraft.gamepedia.com/Map_item_format)
+> In case you want to build an item frame wall with multiple blocks you'll need to handle the buffer to split every 128 values, see [Map item format](https://minecraft.gamepedia.com/Map_item_format)
 
 #### Find the closest color available in minecraft from any color
 
@@ -88,7 +86,7 @@ Arguments and return value are memoized for performances
 > We use a weighted aproach of the color space, read more on [Here](https://en.wikipedia.org/wiki/Color_difference)
 
 ```js
-const colorId = MapColor.nearestMatch(70, 120, 35)
+const colorId = nearestMatch(70, 120, 35)
 ```
 
 ![](https://i.imgur.com/gWAHyQl.png)
@@ -99,11 +97,11 @@ const colorId = MapColor.nearestMatch(70, 120, 35)
 same as doing `COLORS[id-4]`
 
 ```js
-const { r, g, b } = MapColor.color(4)
+const { r, g, b } = color(4)
 ```
 
 You can also get the decimal/hexadecimal value
 
 ```js
-const color = MapColor.hex(4).toString(16)
+const color = hex(4).toString(16)
 ```
