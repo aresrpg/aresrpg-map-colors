@@ -3,7 +3,7 @@ import { promisify } from 'util'
 import cwise from 'cwise'
 import COLORS from './colors'
 
-export COLORS
+export { COLORS }
 
 const pixels = promisify(getPixels)
 
