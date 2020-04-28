@@ -29,7 +29,7 @@
 		"url": "https://github.com/AresRPG/aresrpg-map-colors/issues"
 	},
 	"devDependencies": {
-		"@hydre/doubt": "^2.0.10",
+		"@hydre/doubt": "^3.2.2",
 		"tap-spec-emoji": "^6.0.7"
 	},
 	"dependencies": {
