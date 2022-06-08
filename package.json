@@ -34,7 +34,7 @@
 	},
 	"dependencies": {
 		"cwise": "^1.0.10",
-		"get-pixels": "^3.3.2",
+		"get-pixels": "^3.3.3",
 		"ndarray": "^1.0.19"
 	}
 }
