@@ -1,40 +1,36 @@
 {
-	"name": "@aresrpg/aresrpg-map-colors",
-	"version": "2.0.2",
-	"description": "Aresrpg map item colors utility",
-	"main": "lib/mapColors.js",
-	"type": "module",
-	"scripts": {
-		"test": "node --harmony --experimental-specifier-resolution=node test/index.js | tap-spec-emoji",
-		"postversion": "git push && git push --tags"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/AresRPG/aresrpg-map-colors.git"
-	},
-	"keywords": [
-		"aresrpg",
-		"mmorpg",
-		"minecraft",
-		"map",
-		"colors"
-	],
-	"author": "Sceat",
-	"license": "MIT",
-	"homepage": "https://aresrpg.fr",
-	"publishConfig": {
-		"access": "public"
-	},
-	"bugs": {
-		"url": "https://github.com/AresRPG/aresrpg-map-colors/issues"
-	},
-	"devDependencies": {
-		"@hydre/doubt": "^3.2.2",
-		"tap-spec-emoji": "^6.0.7"
-	},
-	"dependencies": {
-		"cwise": "^1.0.10",
-		"get-pixels": "^3.3.2",
-		"ndarray": "^1.0.19"
-	}
+  "name": "@aresrpg/aresrpg-map-colors",
+  "version": "2.0.2",
+  "description": "Aresrpg map item colors utility",
+  "main": "lib/mapColors.js",
+  "type": "module",
+  "scripts": {
+    "test": "NODE_NO_WARNINGS=1 LOG_LEVEL='silent' node --test",
+    "postversion": "git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AresRPG/aresrpg-map-colors.git"
+  },
+  "keywords": [
+    "aresrpg",
+    "mmorpg",
+    "minecraft",
+    "map",
+    "colors"
+  ],
+  "author": "Sceat",
+  "license": "MIT",
+  "homepage": "https://aresrpg.fr",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bugs": {
+    "url": "https://github.com/AresRPG/aresrpg-map-colors/issues"
+  },
+  "dependencies": {
+    "cwise": "github:Sceat/cwise",
+    "ndarray": "^1.0.19",
+    "ndarray-pixels": "^3.0.4"
+  }
 }
