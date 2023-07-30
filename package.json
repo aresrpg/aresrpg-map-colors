@@ -2,7 +2,7 @@
   "name": "@aresrpg/aresrpg-map-colors",
   "version": "3.0.0",
   "description": "Aresrpg map item colors utility",
-  "main": "lib/mapColors.js",
+  "main": "src/mapColors.js",
   "type": "module",
   "scripts": {
     "test": "NODE_NO_WARNINGS=1 LOG_LEVEL='silent' node --test",
