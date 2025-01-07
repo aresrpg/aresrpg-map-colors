@@ -30,7 +30,7 @@ npm i @aresrpg/aresrpg-map-colors
 
 ## Minecraft colors
 
-[![](https://i.imgur.com/Wjsg0KU.png)](https://minecraft.gamepedia.com/Map_item_format#1.12_Color_Table)
+[![](https://i.imgur.com/Wjsg0KU.png)](https://minecraft.wiki/w/Map_item_format#Color_table)
 
 ---
 
@@ -75,7 +75,7 @@ void (async function() {
 })()
 ```
 
-> In case you want to build an item frame wall with multiple blocks you'll need to handle the buffer to split every 128 values, see [Map item format](https://minecraft.gamepedia.com/Map_item_format)
+> In case you want to build an item frame wall with multiple blocks you'll need to handle the buffer to split every 128 values, see [Map item format](https://minecraft.wiki/w/Map_item_format)
 
 #### Find the closest color available in minecraft from any color
 
